@@ -55,14 +55,43 @@
 		for (int i = 0; i < length; i++) 
 		{
 			CGA_Screen::getpos(x, y);
-			CGA_Screen::show(x, y, text[i], attrib);
-			if (x+1 > 79) {
+			if (text[i] == (char)10)
+			{
 				CGA_Screen::setpos(0, y+1);
+				CGA_Screen::shiftup(y);
+				continue;
 			}
-			else {
-				CGA_Screen::setpos(x+1, y);
+			else
+			{
+				CGA_Screen::show(x, y, text[i], 0b10101101); // eigentlich muss dass das attribut sein: 0b10101101
+				if (x+1 > 79) {
+					CGA_Screen::setpos(0, y+1);
+					CGA_Screen::shiftup(y);
+				}
+				else {
+					CGA_Screen::setpos(x+1, y);
+				}
 			}
+			
 			
 		}
 
 	}
+	
+	void CGA_Screen::shiftup(int& y) 
+	{
+		if (y+1 == 25) 
+				{
+					for (int y1 = 0; y1<24; y1++) {
+						for (int x1 = 0; x1 < 80; x1++){
+							char *pos1 = (char*)CGA_START + (y1+1)*160 + x1*2;
+							CGA_Screen::show(x1, y1, *pos1, *(pos1+1));
+						}
+					
+					}
+					for (int x2 = 0; x2 < 80; x2++) {
+						CGA_Screen::show(x2, 24, 0, 0);
+					} 
+					CGA_Screen::setpos(0, 24);
+				}
+		}

@@ -53,6 +53,8 @@ public:
 	//		This makes the first line disappear. Now, the last line can be deleted 
 	//		and the output can be continued there.
 	void print(char* text, int length, unsigned char atrrib);
+	
+	void shiftup(int& y);
 
 
 };

@@ -17,10 +17,13 @@
 #define __strbuf_include__
 
 class Stringbuffer {
+	private: int index=0;
 public:
+	char buf[64];
 	Stringbuffer(const Stringbuffer &copy) = delete; // prevent copying
 	Stringbuffer& operator=(const Stringbuffer&) = delete; // prevent assignment
-/* Add your code here */ 
+	void put (char c);
+	virtual void flush()=0;
 };
 
 #endif

@@ -21,13 +21,13 @@
 
 #include "object/strbuf.h"
 
-class O_Stream
+class O_Stream: public Stringbuffer
 /* Add your code here */ 
 {
 public:
 	O_Stream(const O_Stream &copy) = delete; // prevent copying
 	O_Stream& operator=(const O_Stream&) = delete; // prevent assignment
-/* Add your code here */ 
+
 };
 
 /*---------------------------------------------------------------------------*/

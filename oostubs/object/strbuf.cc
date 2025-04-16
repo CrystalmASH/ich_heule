@@ -15,4 +15,9 @@
 
 #include "object/strbuf.h"
 
-/* Add your code here */ 
+	void Stringbuffer::put(char c) {
+	buf[index] = c;
+	index++;
+	}
+	
+	
