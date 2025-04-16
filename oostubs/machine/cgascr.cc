@@ -13,8 +13,7 @@
 #include "machine/cgascr.h"
 
 /* Add your code here */ 
-	CGA_Screen::CGA_Screen() {
-		CGA_Screen::print("Mian du boesewicht", 6, 0);
+	CGA_Screen::CGA_Screen() {;
 	}
 	void CGA_Screen::show(int x, int y, char c, unsigned char attrib)
 	{
@@ -29,7 +28,7 @@
 	
 	void CGA_Screen::setpos(int x, int y)
 	{
-		int position = x + y*80 + CGA_START;
+		int position = x + y*80;
 		
 		outb(0x3d4, 15);
 		outb(0x3d5, position & 0xff);
@@ -42,7 +41,7 @@
 		outb(0x3d4, 14);
 		int pos = inb(0x3d5);
 		outb(0x3d4, 15);
-		pos << 8;
+		pos = pos << 8;
 		pos = pos + inb(0x3d5);
 		x = pos % 80;
 		pos = pos - x;
@@ -63,6 +62,7 @@
 			else {
 				CGA_Screen::setpos(x+1, y);
 			}
+			
 		}
 
 	}
