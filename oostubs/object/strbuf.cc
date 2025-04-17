@@ -15,6 +15,8 @@
 
 #include "object/strbuf.h"
 
+	Stringbuffer::Stringbuffer() {};
+
 	void Stringbuffer::put(char c) {
 	buf[index] = c;
 	index++;

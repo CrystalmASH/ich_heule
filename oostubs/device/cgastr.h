@@ -17,13 +17,16 @@
 #include "object/o_stream.h"
 #include "machine/cgascr.h"
 
-class CGA_Stream
+class CGA_Stream: public O_Stream, public CGA_Screen
 /* Add your code here */ 
 {
 public:
+	CGA_Stream();
+
 	CGA_Stream(CGA_Stream &copy) = delete; // prevent copying
 	CGA_Stream& operator=(const CGA_Stream&) = delete; // prevent assignment
 /* Add your code here */ 
+	void flush() override;
 };
 
 #endif

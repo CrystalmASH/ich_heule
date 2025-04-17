@@ -19,3 +19,93 @@
 #include "object/o_stream.h"
 
 /* Add your code here */ 
+	O_Stream::O_Stream() {};
+	O_Stream& O_Stream::operator<< (unsigned char c)
+	{
+		O_Stream::put(c);
+	};
+	O_Stream& O_Stream::operator<< (char c)
+	{
+		O_Stream::put(c);
+	};
+	O_Stream& O_Stream::operator<< (unsigned short number)
+	{
+		
+	};
+	O_Stream& O_Stream::operator<< (short number)
+	{
+		
+	};
+	O_Stream& O_Stream::operator<< (unsigned int number)
+	{
+		
+	};
+	O_Stream& O_Stream::operator<< (int c)
+	{
+		
+	};
+	O_Stream& O_Stream::operator<< (unsigned long number)
+	{
+		
+	};
+	O_Stream& O_Stream::operator<< (long number)
+	{
+		
+	};
+	O_Stream& O_Stream::operator<< (void* pointer)
+	{
+		
+	};
+	O_Stream& O_Stream::operator<< (char* text)
+	{
+		for (int i = 0; i< 10; i++) 
+		{
+			O_Stream::put(text[i]);
+		}
+	};
+	O_Stream& O_Stream::operator<< (O_Stream& (*fkt) (O_Stream&))
+	{
+		return fkt(*this);
+	};
+	
+	// ENDL: inserts a newline in the output and flushes the buffer
+/* Add your code here */ 
+
+O_Stream& endl (O_Stream& os)
+{
+	os.put('\n');
+	os.flush();
+	};
+
+// BIN: selects the binary number system
+/* Add your code here */ 
+
+O_Stream& bin (O_Stream& os)
+{
+	os.number_system = 2;
+	};
+
+// OCT: selects the octal number system
+/* Add your code here */ 
+
+O_Stream& oct (O_Stream& os)
+{
+	os.number_system = 8;
+	};
+
+// DEC: selects the decimal number system
+/* Add your code here */ 
+
+O_Stream& dec (O_Stream& os)
+{
+	os.number_system = 10;
+	};
+
+// HEX: selects the hexadecimal number system
+/* Add your code here */ 
+
+O_Stream& hex (O_Stream& os)
+{
+	os.number_system = 16;
+	};
+
