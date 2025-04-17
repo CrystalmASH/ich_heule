@@ -6,7 +6,7 @@ int main()
 
 {
 CGA_Stream kout;
-kout << "ccccccccc" << endl;
+kout << "cccasss" << 'a' << endl;
 
 
 /* Add your code here */ 

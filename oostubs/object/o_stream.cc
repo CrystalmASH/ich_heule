@@ -23,10 +23,12 @@
 	O_Stream& O_Stream::operator<< (unsigned char c)
 	{
 		O_Stream::put(c);
+		return *this;
 	};
 	O_Stream& O_Stream::operator<< (char c)
 	{
 		O_Stream::put(c);
+		return *this;
 	};
 	O_Stream& O_Stream::operator<< (unsigned short number)
 	{
@@ -58,10 +60,12 @@
 	};
 	O_Stream& O_Stream::operator<< (char* text)
 	{
-		for (int i = 0; i< 10; i++) 
+		
+		for (int i = 0; text[i]!='\0'; i++) 
 		{
 			O_Stream::put(text[i]);
 		}
+		return *this;
 	};
 	O_Stream& O_Stream::operator<< (O_Stream& (*fkt) (O_Stream&))
 	{
@@ -75,6 +79,7 @@ O_Stream& endl (O_Stream& os)
 {
 	os.put('\n');
 	os.flush();
+	return os;
 	};
 
 // BIN: selects the binary number system
@@ -83,6 +88,7 @@ O_Stream& endl (O_Stream& os)
 O_Stream& bin (O_Stream& os)
 {
 	os.number_system = 2;
+	return os;
 	};
 
 // OCT: selects the octal number system
@@ -91,6 +97,7 @@ O_Stream& bin (O_Stream& os)
 O_Stream& oct (O_Stream& os)
 {
 	os.number_system = 8;
+	return os;
 	};
 
 // DEC: selects the decimal number system
@@ -99,6 +106,7 @@ O_Stream& oct (O_Stream& os)
 O_Stream& dec (O_Stream& os)
 {
 	os.number_system = 10;
+	return os;
 	};
 
 // HEX: selects the hexadecimal number system
@@ -107,5 +115,6 @@ O_Stream& dec (O_Stream& os)
 O_Stream& hex (O_Stream& os)
 {
 	os.number_system = 16;
+	return os;
 	};
 
