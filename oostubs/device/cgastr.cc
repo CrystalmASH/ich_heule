@@ -17,8 +17,10 @@
 
 	void CGA_Stream::flush()
 	{
-	CGA_Stream::print("A", 1, 0b00001111);
-	CGA_Stream::print(buf, index, 0b00001111);
-	index = 0;
+		int x = 0;
+		int y = 0;
+		CGA_Stream::print("A", 1, 0b00001111);
+		CGA_Stream::print(buf, index, 0b00001111);
+		index = 0;
 	}
 /* Add your code here */ 

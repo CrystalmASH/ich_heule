@@ -6,8 +6,10 @@ int main()
 
 {
 CGA_Stream kout;
-kout << "cccasss" << 'a' << endl;
-
+int a = -56;
+unsigned long b = 100;
+kout << "hihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihiihi" << endl;
+kout << "ho ho" << a << "xd" << b << endl;
 
 /* Add your code here */ 
  

@@ -19,6 +19,7 @@
 class Stringbuffer {
 public:
 	int index=0;
+	int range = 63;
 	char buf[64];
 	Stringbuffer();
 	Stringbuffer(const Stringbuffer &copy) = delete; // prevent copying

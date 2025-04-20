@@ -20,6 +20,9 @@
 	void Stringbuffer::put(char c) {
 	buf[index] = c;
 	index++;
+	if (index == range) {
+		flush();
+	}
 	}
 	
 	

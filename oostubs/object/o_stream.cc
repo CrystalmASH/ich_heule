@@ -32,27 +32,46 @@
 	};
 	O_Stream& O_Stream::operator<< (unsigned short number)
 	{
-		
+		number = O_Stream::convert_number_system(number);
+		O_Stream::numbertostr((long)number);
+		O_Stream::operator<<(buffer);
+		return *this;
 	};
 	O_Stream& O_Stream::operator<< (short number)
 	{
-		
+		number = O_Stream::convert_number_system(number);
+		O_Stream::numbertostr((long)number);
+		O_Stream::operator<<(buffer);
+		return *this;
 	};
 	O_Stream& O_Stream::operator<< (unsigned int number)
 	{
-		
+		number = O_Stream::convert_number_system(number);
+		O_Stream::numbertostr((long)number);
+		O_Stream::operator<<(buffer);
+		return *this;
 	};
-	O_Stream& O_Stream::operator<< (int c)
+	O_Stream& O_Stream::operator<< (int number)
 	{
-		
+		number = O_Stream::convert_number_system(number);
+		O_Stream::numbertostr((long)number);
+		O_Stream::operator<<(buffer);
+		return *this;
 	};
+
 	O_Stream& O_Stream::operator<< (unsigned long number)
 	{
-		
+		number = O_Stream::convert_number_system(number);
+		O_Stream::numbertostr(number);
+		O_Stream::operator<<(buffer);
+		return *this;
 	};
 	O_Stream& O_Stream::operator<< (long number)
 	{
-		
+		number = O_Stream::convert_number_system(number);
+		O_Stream::numbertostr(number);
+		O_Stream::operator<<(buffer);
+		return *this;
 	};
 	O_Stream& O_Stream::operator<< (void* pointer)
 	{
@@ -71,6 +90,85 @@
 	{
 		return fkt(*this);
 	};
+	
+	long O_Stream::convert_number_system(long number) 
+	{
+		switch (number_system) {
+			case 2:
+				return 0;
+			case 8:
+				return 0;
+			case 10:
+				return number;	
+			case 16:
+				return 0;
+		}
+	}
+	
+	void O_Stream::numbertostr(long number) 
+	{
+		int i = 1;
+		bool isNegative = false;
+		buffer[0] = '\0';
+		if (number == 0) 
+		{
+			buffer[i] = 48;
+			i++;
+		}
+		if (number < 0) 
+		{ 
+			isNegative = true;
+			number = -number;
+		}
+		while(number > 0)
+		{
+			buffer[i] = (number%10) +48;
+			number /= 10;
+			i++;
+		}
+		if (isNegative) 
+		{
+			buffer[i] = '-';
+			i++;
+		}
+		int start = 0;
+		int end = i - 1;
+		while (start < end) 
+		{
+			char tmp = buffer[start];
+			buffer[start] = buffer[end];
+			buffer[end] = tmp;
+			start++;
+			end--;
+		}
+	}
+	
+void O_Stream::numbertostr(unsigned long number) 
+	{
+		int i = 1;
+		buffer[0] = '\0';
+		if (number == 0) 
+		{
+			buffer[i] = 48;
+			i++;
+		}
+		while(number > 0)
+		{
+			buffer[i] = (number%10) +48;
+			number /= 10;
+			i++;
+		}
+		int start = 0;
+		int end = i - 1;
+		while (start < end) 
+		{
+			char tmp = buffer[start];
+			buffer[start] = buffer[end];
+			buffer[end] = tmp;
+			start++;
+			end--;
+		}
+	}
 	
 	// ENDL: inserts a newline in the output and flushes the buffer
 /* Add your code here */ 
