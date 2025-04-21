@@ -95,14 +95,49 @@
 	{
 		switch (number_system) {
 			case 2:
-				return 0;
+				{
+					int exp = 0;
+					long temp = 0;
+					long result = 0;
+					while (number!=0) 
+					{
+						temp = number%2;
+						number = (number-temp)/2;
+						long pow = O_Stream::power(10, exp);
+						result = temp * O_Stream::power(10, exp);
+						exp++;						
+					}
+					return result;
+				};
 			case 8:
-				return 0;
+				{
+					int exp = 0;
+					long temp = 0;
+					long result = 0;
+					while (number!=0) 
+					{
+						temp = number%8;
+						number = (number-temp)/8;
+						long pow = O_Stream::power(10, exp);
+						result = temp * O_Stream::power(10, exp);
+						exp++;						
+					}
+					return result;
+				};
 			case 10:
 				return number;	
 			case 16:
 				return 0;
 		}
+	}
+	
+	long O_Stream::power(int base, int exp) {
+		int result = 1;
+		for (int i = 0; i < exp; i++) 
+		{
+			result *= base;
+		}
+		return result;
 	}
 	
 	void O_Stream::numbertostr(long number) 

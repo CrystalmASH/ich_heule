@@ -6,10 +6,10 @@ int main()
 
 {
 CGA_Stream kout;
-int a = -56;
+int a = 8;
 unsigned long b = 100;
-kout << "hihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihiihi" << endl;
-kout << "ho ho" << a << "xd" << b << endl;
+//kout << "hihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihihiihihihihiihi" << endl;
+kout << bin << a << " in dec: " << dec << a << " in oct: " << oct << a << endl;
 
 /* Add your code here */ 
  

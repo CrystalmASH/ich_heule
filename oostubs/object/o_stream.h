@@ -59,6 +59,7 @@ O_Stream& operator<< (void* pointer);
 O_Stream& operator<< (char* text);
 O_Stream& operator<< (O_Stream& (*fkt) (O_Stream&));
 long convert_number_system(long number);
+long power(int base, int exp);
 void numbertostr (long number);
 void numbertostr (unsigned long number);
 };
