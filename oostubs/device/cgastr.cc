@@ -17,8 +17,6 @@
 
 	void CGA_Stream::flush()
 	{
-		int x = 0;
-		int y = 0;
 		CGA_Stream::print(buf, index, 0b00001111);
 		index = 0;
 	}
