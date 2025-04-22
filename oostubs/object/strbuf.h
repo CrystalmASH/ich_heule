@@ -19,8 +19,8 @@
 class Stringbuffer {
 public:
 	int index=0;
-	int range = 63;
-	char buf[64];
+	int range = 15;
+	char buf[16];
 	Stringbuffer();
 	Stringbuffer(const Stringbuffer &copy) = delete; // prevent copying
 	Stringbuffer& operator=(const Stringbuffer&) = delete; // prevent assignment
