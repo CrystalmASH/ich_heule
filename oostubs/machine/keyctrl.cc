@@ -235,6 +235,16 @@ Key Keyboard_Controller::key_hit()
 {
 	Key invalid; // not explicitly initialized Key objects are invalid
 /* Add your code here */ 
+	if (inb(0x64) & 0b1 == 1)
+	{
+		unsigned char input = inb(0x60);
+		code = input;
+		if (Keyboard_Controller::key_decoded())
+		{
+			Keyboard_Controller::get_ascii_code();
+			return Keyboard_Controller::gather;
+		}
+	}
 /* Add your code here */ 
  
 /* Add your code here */ 
@@ -273,6 +283,9 @@ void Keyboard_Controller::reboot()
 void Keyboard_Controller::set_repeat_rate(int speed, int delay)
 {
 /* Add your code here */ 
+	while ((inb(0x64) & inpb) != 0){};
+	outw(0x64, 0xF3);
+	outw(0x60, ((delay << 5)+ speed));
  
 /* Add your code here */ 
  
@@ -283,6 +296,14 @@ void Keyboard_Controller::set_repeat_rate(int speed, int delay)
 void Keyboard_Controller::set_led(char led, bool on)
 {
 /* Add your code here */ 
+	while ((inb(0x64) & inpb) != 0){};
+	outw(0x64, 0xED);
+	if(on)
+	{
+		outw(0x60, led);
+	}else{
+		outw(0x60, 0b00000000);
+	}
  
 /* Add your code here */ 
  

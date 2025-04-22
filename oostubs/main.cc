@@ -1,11 +1,13 @@
 /* Add your code here */ 
 #include "machine/cgascr.h"
 #include "device/cgastr.h"
+#include "machine/keyctrl.h"
 
 int main()
 
 {
 CGA_Stream kout;
+Keyboard_Controller keyCtr;
 int a = -149;
 unsigned long b = 100;
 //kout << bin << a << endl;
@@ -28,6 +30,18 @@ kout << "pointer:      " << reinterpret_cast<void*>(1994473406541717165ul) << " 
 kout << "smiley:       " << static_cast<char>(1) << endl;
 
 /* Add your code here */ 
+while (true)
+{
+	Key key = keyCtr.key_hit();
+	if (key.valid())  //key.valid()
+	{
+		kout << key.ascii();
+	}
+	/* code */
+}
+
+//Mian ist toll
+//Nele sit auch okay :3
  
 /* Add your code here */ 
  
