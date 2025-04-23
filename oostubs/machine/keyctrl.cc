@@ -326,7 +326,7 @@ void Keyboard_Controller::set_led(char led, bool on)
 			break;
 		}
 	}
-	char result = 0;
+	int result = 0;
 	result += scroll;
 	result += num * 2;
 	result += caps * 4;
