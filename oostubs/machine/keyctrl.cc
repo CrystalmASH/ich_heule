@@ -332,10 +332,10 @@ void Keyboard_Controller::set_led(char led, bool on)
 	result += caps * 4;
 	while ((inb(0x64) & inpb) != 0){};
 	::outb(0x64, 0xED);
-	::inb(0x64);
+	::inb(0x60);
 	while ((inb(0x64) & inpb) != 0){};
 	::outb(0x60, result);
-	::inb(0x64);
+	::inb(0x60);
  
 /* Add your code here */ 
  

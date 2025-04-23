@@ -154,7 +154,7 @@
 					}
 					else
 					{
-						buffer[i] = 48;
+						//buffer[i] = 48;
 						i++;
 					}
 				}
@@ -236,7 +236,7 @@
 					}
 					else
 					{
-						buffer[i] = 48;
+						//buffer[i] = 48;
 						i++;
 					}
 				}
@@ -375,7 +375,7 @@
 					}
 					else
 					{
-						buffer[i] = 48;
+						//buffer[i] = 48;
 						i++;
 					}
 				}
