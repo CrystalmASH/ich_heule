@@ -23,6 +23,9 @@ private:
 	unsigned char prefix;
 	Key gather;
 	char leds;
+	short caps = 0;
+	short num = 0;
+	short scroll = 0;
 
 	// the two used ports of the keyboard controller
 	const IO_Port ctrl_port; // status (R) and control register (W)

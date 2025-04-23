@@ -296,14 +296,43 @@ void Keyboard_Controller::set_repeat_rate(int speed, int delay)
 void Keyboard_Controller::set_led(char led, bool on)
 {
 /* Add your code here */ 
-	while ((inb(0x64) & inpb) != 0){};
-	outw(0x64, 0xED);
 	if(on)
 	{
-		outw(0x60, led);
+		switch (led)
+		{
+		case 1:
+			scroll = 1;
+			break;
+		
+		case 2:
+			num = 1;
+			break;
+		case 4:
+			caps = 1;
+			break;
+		}
 	}else{
-		outw(0x60, 0b00000000);
+				switch (led)
+		{
+		case 1:
+			scroll = 0;
+			break;
+		
+		case 2:
+			num = 0;
+			break;
+		case 4:
+			caps = 0;
+			break;
+		}
 	}
+	char result = 0;
+	result += scroll;
+	result += num * 2;
+	result += caps * 4;
+	while ((inb(0x64) & inpb) != 0){};
+	outw(0x64, 0xED);
+	outw(0x60, result);
  
 /* Add your code here */ 
  
