@@ -63,7 +63,7 @@
 			}
 			else
 			{
-				CGA_Screen::show(x, y, text[i], 0b10101101); // eigentlich muss dass das attribut sein: 0b10101101
+				CGA_Screen::show(x, y, text[i], attrib); // eigentlich muss dass das attribut sein: 0b10101101
 				if (x+1 > 79) {
 					CGA_Screen::setpos(0, y+1);
 					CGA_Screen::shiftup(y);

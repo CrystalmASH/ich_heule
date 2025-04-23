@@ -312,7 +312,7 @@ void Keyboard_Controller::set_led(char led, bool on)
 			break;
 		}
 	}else{
-				switch (led)
+		switch (led)
 		{
 		case 1:
 			scroll = 0;
@@ -331,8 +331,11 @@ void Keyboard_Controller::set_led(char led, bool on)
 	result += num * 2;
 	result += caps * 4;
 	while ((inb(0x64) & inpb) != 0){};
-	outw(0x64, 0xED);
-	outw(0x60, result);
+	::outb(0x64, 0xED);
+	::inb(0x64);
+	while ((inb(0x64) & inpb) != 0){};
+	::outb(0x60, result);
+	::inb(0x64);
  
 /* Add your code here */ 
  
