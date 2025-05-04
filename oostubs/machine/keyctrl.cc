@@ -235,15 +235,13 @@ Key Keyboard_Controller::key_hit()
 {
 	Key invalid; // not explicitly initialized Key objects are invalid
 /* Add your code here */ 
-	if (inb(0x64) & 0b1 == 1)
+
+	unsigned char input = inb(0x60);
+	code = input;
+	if (Keyboard_Controller::key_decoded())
 	{
-		unsigned char input = inb(0x60);
-		code = input;
-		if (Keyboard_Controller::key_decoded())
-		{
-			Keyboard_Controller::get_ascii_code();
-			return Keyboard_Controller::gather;
-		}
+		Keyboard_Controller::get_ascii_code();
+		return Keyboard_Controller::gather;
 	}
 /* Add your code here */ 
  
