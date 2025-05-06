@@ -9,7 +9,7 @@ int main()
 {
 CGA_Stream kout;
 Plugbox plug;
-Keyboard_Controller keyCtr;
+PIC pic;
 int a = -149;
 unsigned long b = 100;
 //kout << bin << a << endl;
@@ -32,9 +32,8 @@ unsigned long b = 100;
 //kout << "smiley:       " << static_cast<char>(1) << endl;
 
 /* Add your code here */ 
-Gate *gate = &plug.report(9);
-gate->trigger();
-Keyboard keybrd;
+
+Keyboard keybrd(&plug, &pic);
 while (true)
 {
 	keybrd.trigger();

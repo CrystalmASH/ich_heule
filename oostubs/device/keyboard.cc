@@ -10,7 +10,10 @@
 #include "device/keyboard.h"
 #include "device/cgastr.h"
 /* Add your code here */ 
-Keyboard::Keyboard( ){}
+Keyboard::Keyboard(Plugbox* plug, PIC* pi ){
+    plugbox = plug;
+    pic = pi;
+}
 /* Add your code here */ 
 void Keyboard::trigger(){
     if (inb(0x64) & 0b1 == 1)
