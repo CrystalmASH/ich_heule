@@ -3,13 +3,16 @@
 #include "device/cgastr.h"
 #include "device/keyboard.h"
 #include "machine/plugbox.h"
+#include "machine/cpu.h"
 
 int main()
 
 {
 CGA_Stream kout;
 Plugbox plug;
-Keyboard_Controller keyCtr;
+CPU cpu;
+cpu.enable_int();
+PIC pic;
 int a = -149;
 unsigned long b = 100;
 //kout << bin << a << endl;
@@ -34,11 +37,8 @@ unsigned long b = 100;
 /* Add your code here */ 
 Gate *gate = &plug.report(9);
 //gate->trigger();
-Keyboard keybrd;
-while (true)
-{
-	keybrd.trigger();
-}
+Keyboard keybrd(&pic, &plug);
+keybrd.plugin();
 
 //Mian ist toll
 //Nele sit auch okay :3
