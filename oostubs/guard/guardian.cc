@@ -10,6 +10,9 @@
 /*****************************************************************************/
 
 /* INCLUDES */
+#include "guard/gate.h"
+#include "machine/plugbox.h"
+
 
 /* FUNCTIONS */
 
@@ -20,5 +23,8 @@ extern "C" void guardian (unsigned int slot);
 
 void guardian (unsigned int slot)
 {
- 
+	Gate& gate;
+	gate = PLUGBOX::report(slot);
+	
+	gate.trigger();
 }

@@ -12,7 +12,7 @@
 /* gets only activated if the CPU is ready to react to interrupts. This can  */
 /* be controlled by using class CPU.                                         */
 /*****************************************************************************/
-
+#include "machine/io_port.h"
 #ifndef __pic_include__
 #define __pic_include__
 
@@ -20,9 +20,19 @@ class PIC {
 public:
 	PIC(const PIC &copy) = delete; // prevent copying
 	PIC& operator=(const PIC&) = delete; // prevent assignment
-	PIC() {}
+	PIC();
 /* Add your code here */ 
+<<<<<<< HEAD
 	void allow (int interrupt_device);
+=======
+	enum {
+		timer = 0,
+		keyboard = 1
+	};
+	void allow(int interrupt_device);
+	void forbid(int interrupt_device);
+	bool is_masked(int interrupt_device);
+>>>>>>> 9a92a4452e131b5dfcdd9e25303faf40fcbb9cea
 };
 
 #endif
