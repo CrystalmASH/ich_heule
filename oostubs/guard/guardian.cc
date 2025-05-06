@@ -24,7 +24,9 @@ extern "C" void guardian (unsigned int slot);
 void guardian (unsigned int slot)
 {
 	Gate& gate;
-	gate = PLUGBOX::report(slot);
+	Plugbox plugbox;
+	
+	gate = plugbox.report(slot);
 	
 	gate.trigger();
 }
