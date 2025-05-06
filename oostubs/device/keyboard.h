@@ -26,7 +26,7 @@ public:
 	Keyboard& operator=(const Keyboard&) = delete; // prevent assignment
 
 /* Add your code here */ 
-	Keyboard(PIC pic, Plugbox plugbox);
+	Keyboard();
 /* Add your code here */ 
  
 	// PLUGIN: "Plugs in" the keyboard (driver). From now on, keypresses are handled.

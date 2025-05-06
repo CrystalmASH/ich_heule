@@ -14,12 +14,6 @@
 /*****************************************************************************/
 
 /* Add your code here */ 
-<<<<<<< HEAD
-
-void allow (int interrupt_device){
-    
-}
-=======
 #include "machine/pic.h"
 
 PIC::PIC() {
@@ -120,4 +114,3 @@ bool PIC::is_masked(int interrupt_device){
 	
 
 
->>>>>>> 9a92a4452e131b5dfcdd9e25303faf40fcbb9cea

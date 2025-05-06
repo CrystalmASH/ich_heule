@@ -11,7 +11,9 @@
 #include "device/cgastr.h"
 
 /* Add your code here */ 
-Keyboard::Keyboard(PIC pic, Plugbox plugbox){}
+Keyboard::Keyboard(){
+
+}
 /* Add your code here */ 
 void Keyboard::trigger(){
     if (inb(0x64) & 0b1 == 1)
@@ -34,7 +36,7 @@ void Keyboard::trigger(){
     }
 }
 
-void Keyboard::plugin(PIC pic, Plugbox plugbox){
+void Keyboard::plugin(PIC pic,Plugbox plugbox){
     plugbox.assign(33, *this);
     pic.allow(1);
 }

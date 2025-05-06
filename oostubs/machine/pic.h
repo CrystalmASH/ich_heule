@@ -22,9 +22,6 @@ public:
 	PIC& operator=(const PIC&) = delete; // prevent assignment
 	PIC();
 /* Add your code here */ 
-<<<<<<< HEAD
-	void allow (int interrupt_device);
-=======
 	enum {
 		timer = 0,
 		keyboard = 1
@@ -32,7 +29,6 @@ public:
 	void allow(int interrupt_device);
 	void forbid(int interrupt_device);
 	bool is_masked(int interrupt_device);
->>>>>>> 9a92a4452e131b5dfcdd9e25303faf40fcbb9cea
 };
 
 #endif
