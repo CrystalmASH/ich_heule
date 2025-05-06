@@ -10,3 +10,27 @@
 /*****************************************************************************/
 
 /* Add your code here */ 
+
+#include "machine/plugbox.h"
+
+Panic Plugbox::panic;
+
+Plugbox::Plugbox() 
+{
+	unsigned int i = 0;
+	while (i < plugboxSize) 
+	{
+		gates[i] = &Plugbox::panic;
+		i++;
+	}
+}
+
+void Plugbox::assign (unsigned int slot, Gate& gate)
+{
+	gates[slot] = &gate;
+};
+	
+Gate& Plugbox::report (unsigned int slot)
+{
+	return *(gates[slot]);
+};
