@@ -14,6 +14,9 @@
 #include "machine/keyctrl.h"
 #include "guard/gate.h"
 #include "machine/key.h"
+
+#include "machine/plugbox.h"
+#include "machine/pic.h"
  
 class Keyboard  : public Keyboard_Controller, public Gate
 /* Add your code here */ 
@@ -23,11 +26,11 @@ public:
 	Keyboard& operator=(const Keyboard&) = delete; // prevent assignment
 
 /* Add your code here */ 
-	Keyboard();
+	Keyboard(PIC pic, Plugbox plugbox);
 /* Add your code here */ 
  
 	// PLUGIN: "Plugs in" the keyboard (driver). From now on, keypresses are handled.
-	void plugin();
+	void plugin(PIC pic, Plugbox plugbox);
 
 /* Add your code here */ 
 	void trigger();

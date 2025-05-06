@@ -18,8 +18,11 @@ class Plugbox {
 public:
 	Plugbox(const Plugbox &copy) = delete; // prevent copying
 	Plugbox& operator=(const Plugbox&) = delete; // prevent assignment
+
+	void assign (unsigned int slot, Gate& gate);
 private:
 /* Add your code here */ 
+	
 };
 
 #endif

@@ -10,3 +10,8 @@
 /*****************************************************************************/
 
 /* Add your code here */ 
+#include "machine/plugbox.h"
+
+void assign (unsigned int slot, Gate& gate){
+
+}

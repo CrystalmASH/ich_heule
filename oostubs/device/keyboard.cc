@@ -9,8 +9,9 @@
 /*****************************************************************************/
 #include "device/keyboard.h"
 #include "device/cgastr.h"
+
 /* Add your code here */ 
-Keyboard::Keyboard( ){}
+Keyboard::Keyboard(PIC pic, Plugbox plugbox){}
 /* Add your code here */ 
 void Keyboard::trigger(){
     if (inb(0x64) & 0b1 == 1)
@@ -24,6 +25,7 @@ void Keyboard::trigger(){
         {
             unsigned char character = pressed_key.ascii();
             if (character != 0){
+                kout.setpos(1,1);
                 kout << character;
             }
             
@@ -32,6 +34,7 @@ void Keyboard::trigger(){
     }
 }
 
-void Keyboard::plugin(){
-
+void Keyboard::plugin(PIC pic, Plugbox plugbox){
+    plugbox.assign(33, *this);
+    pic.allow(1);
 }

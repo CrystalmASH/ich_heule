@@ -22,6 +22,7 @@ public:
 	PIC& operator=(const PIC&) = delete; // prevent assignment
 	PIC() {}
 /* Add your code here */ 
+	void allow (int interrupt_device);
 };
 
 #endif
