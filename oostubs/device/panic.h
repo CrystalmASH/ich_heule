@@ -15,13 +15,15 @@
 
 #include "guard/gate.h"
 
-class Panic
+
+class Panic: public Gate
 /* Add your code here */ 
 {
 public:
 	Panic (const Panic &copy) = delete; // prevent copying
 	Panic& operator=(const Panic&) = delete; // prevent assignment
-	Panic () {}
+	Panic ();
+	void trigger() override;
 /* Add your code here */ 
  
 };

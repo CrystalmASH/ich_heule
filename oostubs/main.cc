@@ -2,11 +2,13 @@
 #include "machine/cgascr.h"
 #include "device/cgastr.h"
 #include "device/keyboard.h"
+#include "machine/plugbox.h"
 
 int main()
 
 {
 CGA_Stream kout;
+Plugbox plug;
 Keyboard_Controller keyCtr;
 int a = -149;
 unsigned long b = 100;
@@ -30,6 +32,8 @@ unsigned long b = 100;
 //kout << "smiley:       " << static_cast<char>(1) << endl;
 
 /* Add your code here */ 
+Gate *gate = &plug.report(9);
+gate->trigger();
 Keyboard keybrd;
 while (true)
 {
@@ -45,3 +49,6 @@ while (true)
  
 	return 0;
 }
+
+
+
