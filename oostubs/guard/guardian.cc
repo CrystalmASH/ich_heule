@@ -12,6 +12,7 @@
 /* INCLUDES */
 #include "guard/gate.h"
 #include "machine/plugbox.h"
+#include "device/cgastr.h"
 
 
 /* FUNCTIONS */
@@ -23,10 +24,10 @@ extern "C" void guardian (unsigned int slot);
 
 void guardian (unsigned int slot)
 {
-	Gate& gate;
+	Gate* gate;
 	Plugbox plugbox;
 	
-	gate = plugbox.report(slot);
+	gate = &plugbox.report(slot);
 	
-	gate.trigger();
+	gate->trigger();
 }
