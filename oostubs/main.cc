@@ -3,6 +3,7 @@
 #include "device/cgastr.h"
 #include "device/keyboard.h"
 #include "machine/plugbox.h"
+#include "guard/guardian.cc"
 
 int main()
 
@@ -31,13 +32,22 @@ unsigned long b = 100;
 //kout << "pointer:      " << reinterpret_cast<void*>(1994473406541717165ul) << " -> 0x1badcafefee1dead" << endl;
 //kout << "smiley:       " << static_cast<char>(1) << endl;
 
+<<<<<<< HEAD
 /* Add your code here */ 
 
 Keyboard keybrd(&plug, &pic);
+=======
+/* Add your code here */
+Gate *gate = &plug.report(9);
+gate->trigger();
+Keyboard keybrd;
+>>>>>>> 51c05b5e6b0913666387f45bdf2f0063c6058a38
 while (true)
 {
 	keybrd.trigger();
-}
+} 
+
+
 
 //Mian ist toll
 //Nele sit auch okay :3
