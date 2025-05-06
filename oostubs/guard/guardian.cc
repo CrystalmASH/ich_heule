@@ -24,6 +24,8 @@ extern "C" void guardian (unsigned int slot);
 
 void guardian (unsigned int slot)
 {
+	CGA_Stream kout;
+	kout << "Hello";
 	Gate* gate;
 	Plugbox plugbox;
 	
