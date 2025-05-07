@@ -11,6 +11,8 @@
 #ifndef __application_include__
 #define __application_include__
 
+extern Plugbox plugbox;
+
 class Application
  
 {
@@ -19,7 +21,7 @@ public:
 	Application (const Application &copy) = delete; // prevent copying
 	Application& operator=(const Application&) = delete; // prevent assignment
 /* Add your code here */ 
- 
+	Application();
 	void action ();
 };
 

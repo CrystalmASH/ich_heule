@@ -13,14 +13,37 @@
 #include "user/appl.h"
 #include "device/cgastr.h"
 #include "machine/cgascr.h"
+#include "device/cgastr.h"
+#include "device/keyboard.h"
+#include "machine/plugbox.h"
+#include "machine/cpu.h"
 /* Add your code here */ 
  
 /* GLOBAL VARIABLES */
 
 extern CGA_Stream kout;
 /* Add your code here */
+
+Application::Application(){}
  
 void Application::action(){
+    CGA_Stream kout;
+    Plugbox plug;
+    CPU cpu;
+    cpu.enable_int();
+    PIC pic;
 
+    Gate *gate = &plug.report(9);
+//gate->trigger();
+
+    Keyboard keybrd(&pic, &plug);
+    keybrd.plugin();
+
+//Mian ist toll
+//Nele sit auch okay :3
+ 
+/* Add your code here */ 
+ 
+/* Add your code here */ 
 /* Add your code here */
 }

@@ -18,25 +18,7 @@
 #include "device/cgastr.h"
 
 PIC::PIC() {
-	//ICW1
-	outb(0x20, 0x11);
-	outb(0xa0, 0x11);
-	
-	//ICW2
-	outb(0x21, 0x20);
-	outb(0xa1, 0x28);
-	
-	//ICW3
-	outb(0x21, 0x04);
-	outb(0xa1, 0x02);
-	
-	//ICW4
-	outb(0x21, 0x03);
-	outb(0xa1, 0x03);
-	
-	//OCW1 
-	outb(0x21, 0xfb);
-	outb(0xa1, 0xff);
+
 }
 	
 void PIC::allow(int interrupt_device){
@@ -57,8 +39,6 @@ void PIC::allow(int interrupt_device){
 		}
 		else if(inb(0x21) == 0xfb){
 			outb(0x21, 0xf9);
-			CGA_Stream kout;
-    		kout << "After decleration";
 		}
 	}
 }
