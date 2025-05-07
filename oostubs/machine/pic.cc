@@ -15,11 +15,12 @@
 
 /* Add your code here */ 
 #include "machine/pic.h"
+#include "device/cgastr.h"
 
 PIC::PIC() {
 	//ICW1
-	outb(0x20, 0x10);
-	outb(0xa0, 0x10);
+	outb(0x20, 0x11);
+	outb(0xa0, 0x11);
 	
 	//ICW2
 	outb(0x21, 0x20);
@@ -39,6 +40,7 @@ PIC::PIC() {
 }
 	
 void PIC::allow(int interrupt_device){
+	
 
 	if(interrupt_device == timer){
 		if(inb(0x21) == 0xf9){
@@ -49,11 +51,14 @@ void PIC::allow(int interrupt_device){
 		}
 	}
 	else if(interrupt_device == keyboard){
+
 		if(inb(0x21) == 0xfa){
 			outb(0x21, 0xf8);
 		}
 		else if(inb(0x21) == 0xfb){
 			outb(0x21, 0xf9);
+			CGA_Stream kout;
+    		kout << "After decleration";
 		}
 	}
 }

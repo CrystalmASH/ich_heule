@@ -29,7 +29,6 @@ void guardian (unsigned int slot)
 	Plugbox plugbox;
 	
 	gate = &plugbox.report(slot);
-	kout << slot;
 	
 	gate->trigger();
 }

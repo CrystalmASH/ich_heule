@@ -39,6 +39,7 @@ void Keyboard::trigger(){
 
 void Keyboard::plugin(){
     plugbox->assign(33, *this);
+    CGA_Stream kout;
     pic->allow(1);
-    
+
 }
