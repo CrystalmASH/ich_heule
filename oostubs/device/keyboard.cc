@@ -38,6 +38,7 @@ void Keyboard::trigger(){
 }
 
 void Keyboard::plugin(){
-    pic->allow(1);
     plugbox->assign(33, *this);
+    pic->allow(1);
+    
 }

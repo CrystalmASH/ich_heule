@@ -34,7 +34,7 @@ public:
 	void plugin();
 
 /* Add your code here */ 
-	void trigger();
+	void trigger() override;
 
 };
 

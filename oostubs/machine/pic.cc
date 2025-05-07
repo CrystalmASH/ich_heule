@@ -39,6 +39,7 @@ PIC::PIC() {
 }
 	
 void PIC::allow(int interrupt_device){
+
 	if(interrupt_device == timer){
 		if(inb(0x21) == 0xf9){
 			outb(0x21, 0xf8);
