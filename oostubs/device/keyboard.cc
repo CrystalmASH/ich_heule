@@ -17,9 +17,12 @@ Keyboard::Keyboard(	PIC* pi, Plugbox* plug){
 /* Add your code here */ 
 void Keyboard::trigger(){
     CGA_Stream kout;
+            kout << "keybpard e1" << endl;
+
     if (inb(0x64) & 0b1 == 1)
     {
-        
+        kout << "keybpard 1" << endl;
+
         Key pressed_key = Keyboard::key_hit();
          if(pressed_key.valid())
             if( pressed_key.scancode() == Key::scan::del and pressed_key.alt() and pressed_key.ctrl()){
@@ -27,7 +30,11 @@ void Keyboard::trigger(){
             };
         {
             unsigned char character = pressed_key.ascii();
+           kout << "keybpard 2" << endl;
+
             if (character != 0){
+				    kout << "keybpard 3" << endl;
+
                 kout.setpos(1,1);
                 kout << character;
             }

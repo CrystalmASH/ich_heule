@@ -21,19 +21,17 @@
  
 /* GLOBAL VARIABLES */
 
-extern CGA_Stream kout;
 /* Add your code here */
 
 Application::Application(){}
  
 void Application::action(){
     CGA_Stream kout;
-    Plugbox plug;
     CPU cpu;
     cpu.enable_int();
     PIC pic;
 
-    Gate *gate = &plug.report(9);
+    //Gate *gate = &plug.report(9);
 //gate->trigger();
 
     Keyboard keybrd(&pic, &plug);

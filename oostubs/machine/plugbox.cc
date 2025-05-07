@@ -34,3 +34,5 @@ Gate& Plugbox::report (unsigned int slot)
 {
 	return *(gates[slot]);
 };
+
+Plugbox plug;

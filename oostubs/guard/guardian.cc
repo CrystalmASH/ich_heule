@@ -26,9 +26,8 @@ void guardian (unsigned int slot)
 {
 	CGA_Stream kout;
 	Gate* gate;
-	Plugbox plugbox;
-	
-	gate = &plugbox.report(slot);
+	kout << slot << endl;
+	gate = &plug.report(slot);
 	
 	gate->trigger();
 }

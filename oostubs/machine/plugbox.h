@@ -14,7 +14,6 @@
 
 #include "guard/gate.h"
 #include "device/panic.h"
-
 class Plugbox {
 private:
 	constexpr static unsigned int plugboxSize = 64;
@@ -30,5 +29,8 @@ public:
 	void assign (unsigned int slot, Gate& gate);
 	Gate& report (unsigned int slot);
 };
+
+extern Plugbox plug;
+
 
 #endif

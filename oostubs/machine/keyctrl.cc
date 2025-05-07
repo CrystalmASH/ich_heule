@@ -11,6 +11,7 @@
 /* INCLUDES */
 
 #include "machine/keyctrl.h"
+#include "device/cgastr.h"
  
 /* STATIC MEMBERS */
 
@@ -235,11 +236,13 @@ Key Keyboard_Controller::key_hit()
 {
 	Key invalid; // not explicitly initialized Key objects are invalid
 /* Add your code here */ 
-
+	CGA_Stream s;
 	unsigned char input = inb(0x60);
 	code = input;
+	s << 1 << endl;
 	if (Keyboard_Controller::key_decoded())
 	{
+		s << 2 << endl;
 		Keyboard_Controller::get_ascii_code();
 		return Keyboard_Controller::gather;
 	}

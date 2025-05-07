@@ -11,7 +11,6 @@
 #ifndef __application_include__
 #define __application_include__
 
-extern Plugbox plugbox;
 
 class Application
  
