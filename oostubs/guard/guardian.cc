@@ -13,6 +13,7 @@
 #include "guard/gate.h"
 #include "machine/plugbox.h"
 #include "device/cgastr.h"
+#include "machine/cpu.h"
 
 
 /* FUNCTIONS */
@@ -25,9 +26,7 @@ extern "C" void guardian (unsigned int slot);
 void guardian (unsigned int slot)
 {
 	Gate* gate;
-	Plugbox plugbox;
-	
-	gate = &plugbox.report(slot);
-	
+	gate = &plug.report(slot);
 	gate->trigger();
+	cpu_idle();
 }

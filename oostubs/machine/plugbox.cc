@@ -12,6 +12,7 @@
 /* Add your code here */ 
 
 #include "machine/plugbox.h"
+#include "device/cgastr.h"
 
 Panic Plugbox::panic;
 
@@ -34,3 +35,5 @@ Gate& Plugbox::report (unsigned int slot)
 {
 	return *(gates[slot]);
 };
+
+Plugbox plug;

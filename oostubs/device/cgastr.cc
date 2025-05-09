@@ -13,11 +13,12 @@
 
 #include "device/cgastr.h"
 
-	CGA_Stream::CGA_Stream() {};
+CGA_Stream::CGA_Stream() {};
 
-	void CGA_Stream::flush()
-	{
-		CGA_Stream::print(buf, index, 0b00001111);
-		index = 0;
-	}
+void CGA_Stream::flush(){
+	CGA_Stream::print(buf, index, 0b00001111);
+	index = 0;
+}
+
+CGA_Stream kout;
 /* Add your code here */ 

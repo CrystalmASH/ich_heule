@@ -216,12 +216,12 @@ void Keyboard_Controller::get_ascii_code()
 Keyboard_Controller::Keyboard_Controller() : ctrl_port(0x64), data_port(0x60)
 {
 	// disable all LEDs (many PCs enable Num Lock during the boot process)
-	set_led(led::caps_lock, false);
-	set_led(led::scroll_lock, false);
-	set_led(led::num_lock, false);
+	//set_led(led::caps_lock, false);
+	//set_led(led::scroll_lock, false);
+	//set_led(led::num_lock, false);
 
 	// maximum speed, minimal delay
-	set_repeat_rate(0, 0);
+	//set_repeat_rate(0, 0);
 }
 
 // KEY_HIT: Meant for retrieving information from the keyboard after a
@@ -235,8 +235,7 @@ Key Keyboard_Controller::key_hit()
 {
 	Key invalid; // not explicitly initialized Key objects are invalid
 /* Add your code here */ 
-
-	unsigned char input = inb(0x60);
+	unsigned char input = inb(port_int::data_port);
 	code = input;
 	if (Keyboard_Controller::key_decoded())
 	{
@@ -281,9 +280,9 @@ void Keyboard_Controller::reboot()
 void Keyboard_Controller::set_repeat_rate(int speed, int delay)
 {
 /* Add your code here */ 
-	while ((inb(0x64) & inpb) != 0){};
-	outw(0x64, 0xF3);
-	outw(0x60, ((delay << 5)+ speed));
+	while ((inb(port_int::controll_port) & inpb) != 0){};
+	::outb(port_int::controll_port, kbd_cmd::set_speed);
+	::outb(port_int::data_port, ((delay << 5)+ speed));
  
 /* Add your code here */ 
  
@@ -325,15 +324,15 @@ void Keyboard_Controller::set_led(char led, bool on)
 		}
 	}
 	int result = 0;
-	result += scroll;
-	result += num * 2;
-	result += caps * 4;
-	while ((inb(0x64) & inpb) != 0){};
-	::outb(0x64, 0xED);
-	::inb(0x60);
-	while ((inb(0x64) & inpb) != 0){};
-	::outb(0x60, result);
-	::inb(0x60);
+	result += scroll * led::scroll_lock;
+	result += num * led::num_lock;
+	result += caps * led::caps_lock;
+	while ((inb(port_int::controll_port) & inpb) != 0){};
+	::outb(port_int::controll_port, kbd_cmd::set_led);
+	::inb(port_int::data_port);
+	while ((inb(port_int::controll_port) & inpb) != 0){};
+	::outb(port_int::data_port, result);
+	::inb(port_int::data_port);
  
 /* Add your code here */ 
  

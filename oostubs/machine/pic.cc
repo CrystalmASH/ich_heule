@@ -15,6 +15,7 @@
 
 /* Add your code here */ 
 #include "machine/pic.h"
+#include "device/cgastr.h"
 
 PIC::PIC() {
 }

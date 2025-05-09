@@ -11,12 +11,9 @@
 
 #ifndef __Plugbox_include__
 #define __Plugbox_include__
-#define timer = 32
-#define keyboard = 33
 
 #include "guard/gate.h"
 #include "device/panic.h"
-
 class Plugbox {
 private:
 	constexpr static unsigned int plugboxSize = 64;
@@ -24,11 +21,16 @@ private:
 
 public:
 	static Panic panic;
+	int timer = 32;
+	int keyboard = 33;
 	Plugbox(const Plugbox &copy) = delete; // prevent copying
 	Plugbox& operator=(const Plugbox&) = delete; // prevent assignment
 	Plugbox();
 	void assign (unsigned int slot, Gate& gate);
 	Gate& report (unsigned int slot);
 };
+
+extern Plugbox plug;
+
 
 #endif
