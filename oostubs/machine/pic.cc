@@ -17,29 +17,10 @@
 #include "machine/pic.h"
 
 PIC::PIC() {
-	//ICW1
-	outb(0x20, 0x10);
-	outb(0xa0, 0x10);
-	
-	//ICW2
-	outb(0x21, 0x20);
-	outb(0xa1, 0x28);
-	
-	//ICW3
-	outb(0x21, 0x04);
-	outb(0xa1, 0x02);
-	
-	//ICW4
-	outb(0x21, 0x03);
-	outb(0xa1, 0x03);
-	
-	//OCW1 
-	outb(0x21, 0xfb);
-	outb(0xa1, 0xff);
 }
 	
 void PIC::allow(int interrupt_device){
-	if(interrupt_device == timer){
+	/*if(interrupt_device == timer){
 		if(inb(0x21) == 0xf9){
 			outb(0x21, 0xf8);
 		}
@@ -54,11 +35,34 @@ void PIC::allow(int interrupt_device){
 		else if(inb(0x21) == 0xfb){
 			outb(0x21, 0xf9);
 		}
+	}*/
+	if(interrupt_device > 15) return;
+	if(!PIC::is_masked(interrupt_device)) return;
+
+	bool slave = false;
+	if(interrupt_device > 7){
+		slave = true;
+		interrupt_device = interrupt_device % 8;
 	}
+
+	int bin_interrupt_device = 0b00000001 << interrupt_device;
+	bin_interrupt_device = bin_interrupt_device ^ 0xFF;
+
+	if(!slave){
+		int port = inb(0x21);
+		int new_bin = port & bin_interrupt_device;
+		outb(0x21, new_bin);
+	}
+	else{
+		int port = inb(0xa1);
+		int new_bin = port & bin_interrupt_device;
+		outb(0xa1, new_bin);
+	}
+	
 }
 
 void PIC::forbid(int interrupt_device){
-	if(interrupt_device == timer){
+	/*if(interrupt_device == timer){
 		if(inb(0x21) == 0xf8){
 			outb(0x21, 0xf9);
 		}
@@ -73,11 +77,32 @@ void PIC::forbid(int interrupt_device){
 		else if(inb(0x21) == 0xf8){
 			outb(0x21, 0xfa);
 		}
+	}*/
+	if(interrupt_device > 15) return;
+	if(PIC::is_masked(interrupt_device)) return;
+
+	bool slave = false;
+	if(interrupt_device > 7){
+		slave = true;
+		interrupt_device = interrupt_device % 8;
+	}
+
+	int bin_interrupt_device = 0b00000001 << interrupt_device;
+
+	if(!slave){
+		int port = inb(0x21);
+		int new_bin = port | bin_interrupt_device;
+		outb(0x21, new_bin);
+	}
+	else{
+		int port = inb(0xa1);
+		int new_bin = port | bin_interrupt_device;
+		outb(0xa1, new_bin);
 	}
 }
 
 bool PIC::is_masked(int interrupt_device){
-	if(interrupt_device == timer){
+	/*if(interrupt_device == timer){
 		if(inb(0x21) == 0xfb || inb(0x21) == 0xf9){
 			return true;
 		}
@@ -98,6 +123,30 @@ bool PIC::is_masked(int interrupt_device){
 	}
 	else{
 		return true;
+	}*/
+	if(interrupt_device > 15) return false;
+
+	bool slave = false;
+	if(interrupt_device > 7){
+		slave = true;
+		interrupt_device = interrupt_device % 8;
+	}
+
+	int bin_interrupt_device = 0b00000001 << interrupt_device;
+
+	if(!slave){
+		int port = inb(0x21);
+		int new_bin = port & bin_interrupt_device;
+		outb(0x21, port);
+		if(new_bin == bin_interrupt_device) return true;
+		else return false;
+	}
+	else{
+		int port = inb(0xa1);
+		int new_bin = port & bin_interrupt_device;
+		outb(0xa1, port);
+		if(new_bin == bin_interrupt_device) return true;
+		else return false;
 	}
 }
 	
