@@ -25,11 +25,8 @@ extern "C" void guardian (unsigned int slot);
 
 void guardian (unsigned int slot)
 {
-	CGA_Stream kout;
 	Gate* gate;
-	kout << slot << endl;
 	gate = &plug.report(slot);
-	kout << "trigger guardian" << endl;
 	gate->trigger();
 	cpu_idle();
 }

@@ -33,8 +33,6 @@ void Plugbox::assign (unsigned int slot, Gate& gate)
 	
 Gate& Plugbox::report (unsigned int slot)
 {
-	CGA_Stream kout;
-	kout << "report" << endl;
 	return *(gates[slot]);
 };
 

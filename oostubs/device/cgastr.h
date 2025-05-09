@@ -29,4 +29,6 @@ public:
 	void flush() override;
 };
 
+extern CGA_Stream kout;
+
 #endif

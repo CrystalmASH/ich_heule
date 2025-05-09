@@ -55,8 +55,6 @@ public:
 	void print(char* text, int length, unsigned char atrrib);
 	
 	void shiftup(int& y);
-
-
 };
 
 #endif
