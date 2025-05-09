@@ -50,6 +50,10 @@ private:
 		enum { ack = 0xfa };
 	};
 
+	struct port_int{
+		enum { data_port = 0x60, controll_port = 0x64};
+	};
+
 	// constants for keyboard decoding
 	enum { break_bit = 0x80, prefix1 = 0xe0, prefix2 = 0xe1 };
 
