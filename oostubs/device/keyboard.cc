@@ -40,6 +40,6 @@ void Keyboard::trigger(){
 }
 
 void Keyboard::plugin(){
-    plugbox->assign(33, *this);
-    pic->allow(1);
+    plugbox->assign(plugbox->keyboard, *this);
+    pic->allow(pic->keyboard);
 }
