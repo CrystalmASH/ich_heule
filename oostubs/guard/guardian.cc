@@ -13,6 +13,7 @@
 #include "guard/gate.h"
 #include "machine/plugbox.h"
 #include "device/cgastr.h"
+#include "machine/cpu.h"
 
 
 /* FUNCTIONS */
@@ -28,6 +29,7 @@ void guardian (unsigned int slot)
 	Gate* gate;
 	kout << slot << endl;
 	gate = &plug.report(slot);
-	
+	kout << "trigger guardian" << endl;
 	gate->trigger();
+	cpu_idle();
 }

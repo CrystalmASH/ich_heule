@@ -22,23 +22,27 @@ PIC::PIC() {
 }
 	
 void PIC::allow(int interrupt_device){
-	
+	CGA_Stream kout;
 
 	if(interrupt_device == timer){
 		if(inb(0x21) == 0xf9){
 			outb(0x21, 0xf8);
+			kout << "timer" << endl;
 		}
 		else if(inb(0x21) == 0xfb){
 			outb(0x21, 0xfa);
+			kout << "timer" << endl;
 		}
 	}
 	else if(interrupt_device == keyboard){
 
 		if(inb(0x21) == 0xfa){
 			outb(0x21, 0xf8);
+			kout << "keyboard1" << endl;
 		}
 		else if(inb(0x21) == 0xfb){
 			outb(0x21, 0xf9);
+			kout << "keyboard2" << endl;
 		}
 	}
 }

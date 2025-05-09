@@ -1,0 +1,4 @@
+/oostubs/build
+/oostubs/dep
+*.o
+*.d

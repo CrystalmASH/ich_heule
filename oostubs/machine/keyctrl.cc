@@ -217,12 +217,12 @@ void Keyboard_Controller::get_ascii_code()
 Keyboard_Controller::Keyboard_Controller() : ctrl_port(0x64), data_port(0x60)
 {
 	// disable all LEDs (many PCs enable Num Lock during the boot process)
-	set_led(led::caps_lock, false);
-	set_led(led::scroll_lock, false);
-	set_led(led::num_lock, false);
+	//set_led(led::caps_lock, false);
+	//set_led(led::scroll_lock, false);
+	//set_led(led::num_lock, false);
 
 	// maximum speed, minimal delay
-	set_repeat_rate(0, 0);
+	//set_repeat_rate(0, 0);
 }
 
 // KEY_HIT: Meant for retrieving information from the keyboard after a

@@ -12,6 +12,7 @@
 /* Add your code here */ 
 
 #include "machine/plugbox.h"
+#include "device/cgastr.h"
 
 Panic Plugbox::panic;
 
@@ -32,6 +33,8 @@ void Plugbox::assign (unsigned int slot, Gate& gate)
 	
 Gate& Plugbox::report (unsigned int slot)
 {
+	CGA_Stream kout;
+	kout << "report" << endl;
 	return *(gates[slot]);
 };
 

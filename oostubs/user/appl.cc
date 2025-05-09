@@ -36,6 +36,9 @@ void Application::action(){
 
     Keyboard keybrd(&pic, &plug);
     keybrd.plugin();
+    cpu_idle();
+
+
 
 //Mian ist toll
 //Nele sit auch okay :3
