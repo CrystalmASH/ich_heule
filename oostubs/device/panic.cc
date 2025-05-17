@@ -20,11 +20,12 @@
 
 	Panic::Panic() {};
 	
-	void Panic::trigger() 
+	bool Panic::prologue() 
 	{
 		// TODO: print error message
 		panicOutput << endl << "unknown exception occured. stopping CPU..." << endl;
 		cpu_halt();
+		return false;
 	};
 	
 	

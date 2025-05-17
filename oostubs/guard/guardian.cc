@@ -14,6 +14,7 @@
 #include "machine/plugbox.h"
 #include "device/cgastr.h"
 #include "machine/cpu.h"
+#include "guard/guard.h"
 
 
 /* FUNCTIONS */
@@ -27,6 +28,10 @@ void guardian (unsigned int slot)
 {
 	Gate* gate;
 	gate = &plug.report(slot);
-	gate->trigger();
+	bool epilogueRequested = gate->prologue();
+	if (epilogueRequested) 
+	{
+		guard->relay(gate);
+		}
 	cpu_idle();
 }

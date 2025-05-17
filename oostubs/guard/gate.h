@@ -15,11 +15,16 @@
 class Gate
 
 {
+private:
+	bool queueFlag = false;
 public: 
 	Gate() = default;
 	Gate(const Gate &copy) = delete; // prevent copying
 	Gate& operator=(const Gate&) = delete; // prevent assignment
-	virtual void trigger() = 0;
+	virtual bool prologue() = 0;
+	virtual bool epilogue() {};
+	void queued(bool q) {queueFlag = q;};
+	bool queued() {return queueFlag;};
 };
 
 #endif
