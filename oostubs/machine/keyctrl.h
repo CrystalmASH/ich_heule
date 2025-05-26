@@ -19,7 +19,6 @@ public:
 	Keyboard_Controller(const Keyboard_Controller &copy) = delete; // prevent copying
 	Keyboard_Controller& operator=(const Keyboard_Controller&) = delete; // prevent assignment
 private:
-	unsigned char code;
 	unsigned char prefix;
 	Key gather;
 	char leds;
@@ -50,10 +49,6 @@ private:
 		enum { ack = 0xfa };
 	};
 
-	struct port_int{
-		enum { data_port = 0x60, controll_port = 0x64};
-	};
-
 	// constants for keyboard decoding
 	enum { break_bit = 0x80, prefix1 = 0xe0, prefix2 = 0xe1 };
 
@@ -75,6 +70,12 @@ private:
 	void get_ascii_code();
 
 public:
+
+	unsigned char code;
+
+	struct port_int{
+		enum { data_port = 0x60, controll_port = 0x64};
+	};
 	// KEYBOARD_CONTROLLER: keyboard initialization: disables all LEDs and
 	//                      sets the repeat rate to maximum.
 	Keyboard_Controller();

@@ -39,6 +39,34 @@ void Keyboard::trigger(){
     }
 }
 
+bool Keyboard::prologue(){
+    if(inb(0x64) & 0b1 == 1){
+        code = inb(port_int::data_port);
+    }
+    Gate:queued(true);
+    return true;
+}
+
+bool Keyboard::epilogue(){
+    Key pressed_key = Keyboard_Controller::key_hit();
+    if(pressed_key.valid()){
+        if( pressed_key.scancode() == Key::scan::del and pressed_key.alt() and pressed_key.ctrl()){
+            reboot();
+        };
+        unsigned char character = pressed_key.ascii();
+        if (character != 0){
+
+            pic->forbid(pic->keyboard);
+            kout.setpos(1,1);
+            kout << character;
+            pic->allow(pic->keyboard);
+        }
+        //pressed_key = Keyboard::key_hit();
+    } 
+    Gate:queued(false);
+    return false;
+}
+
 void Keyboard::plugin(){
     plugbox->assign(plugbox->keyboard, *this);
     pic->allow(pic->keyboard);
