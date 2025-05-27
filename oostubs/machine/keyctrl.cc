@@ -235,8 +235,7 @@ Key Keyboard_Controller::key_hit()
 {
 	Key invalid; // not explicitly initialized Key objects are invalid
 /* Add your code here */ 
-	unsigned char input = inb(port_int::data_port);
-	code = input;
+
 	if (Keyboard_Controller::key_decoded())
 	{
 		Keyboard_Controller::get_ascii_code();

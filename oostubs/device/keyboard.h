@@ -34,7 +34,11 @@ public:
 	void plugin();
 
 /* Add your code here */ 
-	void trigger() override;
+	void trigger();
+
+	bool prologue() override;
+
+	bool epilogue () override;
 
 };
 
