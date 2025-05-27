@@ -19,6 +19,11 @@ public:
 	Locker(const Locker &copy) = delete; // prevent copying
 	Locker& operator=(const Locker&) = delete; // prevent assignment
 /* Add your code here */ 
+	bool entered;
+	Locker(){entered = false;}
+	void enter(){entered = true;}
+	void retne(){entered = false;}
+	bool avail(){return entered;}
 };
 
 #endif

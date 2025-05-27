@@ -40,14 +40,16 @@ void Keyboard::trigger(){
 }
 
 bool Keyboard::prologue(){
+    kout << "prologue keyboard" << endl;
     if(inb(0x64) & 0b1 == 1){
         code = inb(port_int::data_port);
     }
-    Gate:queued(true);
+    Gate::queued(true);
     return true;
 }
 
 bool Keyboard::epilogue(){
+    kout << "epilogue keyboard" << endl;
     Key pressed_key = Keyboard_Controller::key_hit();
     if(pressed_key.valid()){
         if( pressed_key.scancode() == Key::scan::del and pressed_key.alt() and pressed_key.ctrl()){

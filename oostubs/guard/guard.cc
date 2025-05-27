@@ -23,10 +23,10 @@ void Guard::leave(){
 
     while(chain != nullptr){
 
-        CPU::disable_int;
+        cpu.disable_int();
         if(guard.avail()){
             guard.enter();
-            CPU::enable_int;
+            cpu.enable_int();
 
             gate = static_cast<Gate*>(chain);
 
@@ -36,7 +36,7 @@ void Guard::leave(){
             guard.retne();
         }
 
-        CPU::enable_int;
+        cpu.enable_int();
         chain = epilogues.dequeue();
     }
 
@@ -44,14 +44,14 @@ void Guard::leave(){
 }
 
 void Guard::relay(Gate* item){
-    CPU::disable_int;
+    cpu.disable_int();
     if(guard.avail()){
         guard.enter();
-        CPU::enable_int;
+        cpu.enable_int();
         item->epilogue();
     }
     else {
-        CPU::enable_int;
+        cpu.enable_int();
         if(!(item->queued())){
 
             item->queued(true);

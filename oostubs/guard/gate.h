@@ -8,12 +8,14 @@
 /* Class of objects that handle interrupts.                                  */
 /*****************************************************************************/
 
+
+#include "object/chain.h"
+
 #ifndef __Gate_include__
 #define __Gate_include__
 
 /* Add your code here */ 
-class Gate : public Chain
-{
+class Gate : public Chain{
 private:
 	bool queueFlag = false;
 public: 

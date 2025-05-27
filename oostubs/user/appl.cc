@@ -23,20 +23,21 @@
 
 /* Add your code here */
 
+CPU cpu;
+
 Application::Application(){}
  
 void Application::action(){
     CGA_Stream kout;
-    CPU cpu;
-    cpu.enable_int();
     PIC pic;
+    cpu.enable_int();
 
     //Gate *gate = &plug.report(9);
 //gate->trigger();
 
     Keyboard keybrd(&pic, &plug);
     keybrd.plugin();
-    cpu_idle();
+    cpu.idle();
 
 
 

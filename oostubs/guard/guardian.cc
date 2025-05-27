@@ -31,7 +31,7 @@ void guardian (unsigned int slot)
 	bool epilogueRequested = gate->prologue();
 	if (epilogueRequested) 
 	{
-		guard->relay(gate);
+		guard.relay(gate);
 		}
 	cpu_idle();
 }
