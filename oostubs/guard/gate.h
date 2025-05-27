@@ -12,8 +12,7 @@
 #define __Gate_include__
 
 /* Add your code here */ 
-class Gate
-
+class Gate : public Chain
 {
 private:
 	bool queueFlag = false;

@@ -12,9 +12,22 @@
 /* critical section.                                                         */
 /*****************************************************************************/
 
+#include "guard/guard.h"
+
 #ifndef __Secure_include__
+
+
+
 #define __Secure_include__
 
+
+
+
 /* Add your code here */ 
+class Secure{
+    public:
+        Secure(){guard.enter();}
+        ~Secure(){guard.leave(); }
+};
 
 #endif

@@ -10,6 +10,11 @@
 /* synchronization takes place along the prologue/epilogue model.            */
 /*****************************************************************************/
 #include "guard/locker.h"
+#include "guard/gate.h"
+#include "object/queue.h"
+#include "machine/cpu.h"
+#include "object/chain.h"
+
 
 #ifndef __Guard_include__
 #define __Guard_include__
@@ -22,6 +27,14 @@ public:
 	Guard& operator=(const Guard&) = delete; // prevent assignment
 	Guard ();
 /* Add your code here */ 
+	Queue epilogues;
+	Locker locker;
+	int number;
+	Chain *chain;
+	Gate* gate;
+	void leave();
+	void relay(Gate* item);
 };
 
+extern Guard guard;
 #endif
