@@ -12,6 +12,7 @@
 
 /* Add your code here */ 
 #include "guard/guard.h"
+#include "device/cgastr.h"
 
 Guard::Guard(){
     number = 0;
@@ -49,6 +50,7 @@ void Guard::relay(Gate* item){
         guard.enter();
         cpu.enable_int();
         item->epilogue();
+        guard.retne();
     }
     else {
         cpu.enable_int();
@@ -59,6 +61,7 @@ void Guard::relay(Gate* item){
 
         }
     }
+    cpu.idle();
 
 }
 
