@@ -55,11 +55,12 @@ bool Keyboard::epilogue(){
     kout << "epilogue" << endl;
     Key pressed_key = Keyboard_Controller::key_hit();
 
-    if(pressed_key.valid()){
-        if( pressed_key.scancode() == pressed_key.alt()){
+    if( pressed_key.scancode() == Key::scan::del and pressed_key.alt() and pressed_key.ctrl()){
             kout << "reboot" << endl;
             reboot();
-        };
+    };
+    if(pressed_key.valid()){
+        kout << "epilogue 2" << endl;
         unsigned char character = pressed_key.ascii();
         if (character != 0){
 
