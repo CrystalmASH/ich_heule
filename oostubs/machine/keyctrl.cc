@@ -326,12 +326,12 @@ void Keyboard_Controller::set_led(char led, bool on)
 	result += scroll * led::scroll_lock;
 	result += num * led::num_lock;
 	result += caps * led::caps_lock;
-	while ((inb(port_int::controll_port) & inpb) != 0){};
+	/*while ((inb(port_int::controll_port) & inpb) != 0){};
 	::outb(port_int::controll_port, kbd_cmd::set_led);
 	::inb(port_int::data_port);
 	while ((inb(port_int::controll_port) & inpb) != 0){};
 	::outb(port_int::data_port, result);
-	::inb(port_int::data_port);
+	::inb(port_int::data_port);*/
  
 /* Add your code here */ 
  

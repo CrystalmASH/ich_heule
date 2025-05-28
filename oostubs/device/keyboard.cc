@@ -42,22 +42,29 @@ void Keyboard::trigger(){
 bool Keyboard::prologue(){
     if(inb(0x64) & 0b1 == 1){
         code = inb(port_int::data_port);
+        kout << "Prologue " << endl;
+        Gate::queued(true);
+        return true;
+    }else{
+        kout << "Prologue 2" << endl;
+        return false;
     }
-    Gate::queued(true);
-    return true;
 }
 
 bool Keyboard::epilogue(){
+    kout << "epilogue" << endl;
     Key pressed_key = Keyboard_Controller::key_hit();
+
     if(pressed_key.valid()){
-        if( pressed_key.scancode() == Key::scan::del and pressed_key.alt() and pressed_key.ctrl()){
+        if( pressed_key.scancode() == pressed_key.alt()){
+            kout << "reboot" << endl;
             reboot();
         };
         unsigned char character = pressed_key.ascii();
         if (character != 0){
 
             pic->forbid(pic->keyboard);
-            kout.setpos(1,1);
+            //kout.setpos(1,1);
             kout << character;
             pic->allow(pic->keyboard);
         }

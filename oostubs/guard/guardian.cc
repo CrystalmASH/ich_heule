@@ -33,6 +33,6 @@ void guardian (unsigned int slot)
 	if (epilogueRequested) 
 	{
 		guard.relay(gate);
-		}
+	}
 	cpu_idle();
 }
