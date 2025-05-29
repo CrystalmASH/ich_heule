@@ -27,11 +27,13 @@ extern "C" void guardian (unsigned int slot);
 
 void guardian (unsigned int slot)
 {
+	//kout<<"interrupt"<<endl;
 	Gate* gate;
 	gate = &plug.report(slot);
 	bool epilogueRequested = gate->prologue();
 	if (epilogueRequested) 
 	{
+		//kout<<"epilogue bitte"<<endl;
 		guard.relay(gate);
 	}
 	cpu_idle();

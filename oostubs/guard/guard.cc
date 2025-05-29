@@ -21,25 +21,25 @@ Guard::Guard(){
 
 void Guard::leave(){
 
-    kout<<"leave..."<<endl;
-    kout<<guard.avail()<<endl;
-    kout<<"leave..."<<endl;
+    //kout<<"leave..."<<endl;
+    //kout<<guard.avail()<<endl;
+    //kout<<"leave..."<<endl;
 
     chain = epilogues.dequeue();
 
     while(chain != nullptr){
         
 
-        kout<<"while"<<endl;
+        //kout<<"while"<<endl;
 
         cpu.disable_int();
 
-        kout<<guard.avail()<<endl;
+        //kout<<guard.avail()<<endl;
 
         if(guard.avail()){
             //guard.enter();
 
-            kout<<".....leave....."<<endl;
+            //kout<<".....leave....."<<endl;
 
             Secure secure;
 
@@ -58,14 +58,19 @@ void Guard::leave(){
     }
 
     guard.retne();
+
+    if(chain = nullptr) cpu_idle();
+    //cpu.idle();
 }
 
 void Guard::relay(Gate* item){
+    //kout<<"relay"<<endl;
     cpu.disable_int();
+    //kout<<"realy0.5"<<endl;
     if(guard.avail()){
-
+        //kout<<"relay1"<<endl;
         guard.enter();
-
+        //Secure secure2;
         //number=1000;
 
         //Secure secure;
@@ -78,21 +83,23 @@ void Guard::relay(Gate* item){
 
         item->epilogue();
         guard.retne();
-        kout<<"relay..."<<endl;
-        kout<<guard.avail()<<endl;
-        kout<<"relay..."<<endl;
+        //kout<<"relay..."<<endl;
+        //kout<<guard.avail()<<endl;
+        //kout<<"relay..."<<endl;
         //guard.leave();
     }
     else {
 
         //kout<<item->queued()<<endl;
+        //kout<<"relay2"<<endl;
 
         cpu.enable_int();
         if(!(item->queued())){
 
 
-                kout<<".....relay3....."<<endl;
+                //kout<<".....relay3....."<<endl;
 
+                //guard.retne();
                 
                 cpu.disable_int();
                 epilogues.enqueue(item);
@@ -104,7 +111,7 @@ void Guard::relay(Gate* item){
 
     guard.leave();
 
-    cpu.idle();
+    //cpu.idle();
     
 
 }
