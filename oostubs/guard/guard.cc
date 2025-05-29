@@ -13,6 +13,7 @@
 /* Add your code here */ 
 #include "guard/guard.h"
 #include "device/cgastr.h"
+#include "guard/secure.h"
 
 Guard::Guard(){
     number = 0;
@@ -20,13 +21,28 @@ Guard::Guard(){
 
 void Guard::leave(){
 
+    kout<<"leave..."<<endl;
+    kout<<guard.avail()<<endl;
+    kout<<"leave..."<<endl;
+
     chain = epilogues.dequeue();
 
     while(chain != nullptr){
+        
+
+        kout<<"while"<<endl;
 
         cpu.disable_int();
+
+        kout<<guard.avail()<<endl;
+
         if(guard.avail()){
-            guard.enter();
+            //guard.enter();
+
+            kout<<".....leave....."<<endl;
+
+            Secure secure;
+
             cpu.enable_int();
 
             gate = static_cast<Gate*>(chain);
@@ -34,7 +50,7 @@ void Guard::leave(){
             gate->epilogue();
             gate->queued(false);
             
-            guard.retne();
+            //guard.retne();
         }
 
         cpu.enable_int();
@@ -47,21 +63,49 @@ void Guard::leave(){
 void Guard::relay(Gate* item){
     cpu.disable_int();
     if(guard.avail()){
+
         guard.enter();
+
+        //number=1000;
+
+        //Secure secure;
+
+        //number=2000;
+
         cpu.enable_int();
+
+        //kout<<".....relay1....."<<endl;
+
         item->epilogue();
         guard.retne();
+        kout<<"relay..."<<endl;
+        kout<<guard.avail()<<endl;
+        kout<<"relay..."<<endl;
+        //guard.leave();
     }
     else {
+
+        //kout<<item->queued()<<endl;
+
         cpu.enable_int();
         if(!(item->queued())){
 
-            item->queued(true);
-            epilogues.enqueue(item);
 
-        }
+                kout<<".....relay3....."<<endl;
+
+                
+                cpu.disable_int();
+                epilogues.enqueue(item);
+                item->queued(true);
+                cpu.enable_int();
+            }
+            
     }
+
+    guard.leave();
+
     cpu.idle();
+    
 
 }
 

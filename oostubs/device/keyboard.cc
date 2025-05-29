@@ -42,17 +42,17 @@ void Keyboard::trigger(){
 bool Keyboard::prologue(){
     if(inb(0x64) & 0b1 == 1){
         code = inb(port_int::data_port);
-        kout << "Prologue " << endl;
-        Gate::queued(true);
+        //kout << "Prologue " << endl;
+        //Gate::queued(true);
         return true;
     }else{
-        kout << "Prologue 2" << endl;
+        //kout << "Prologue 2" << endl;
         return false;
     }
 }
 
 bool Keyboard::epilogue(){
-    kout << "epilogue" << endl;
+    //kout << "epilogue" << endl;
     Key pressed_key = Keyboard_Controller::key_hit();
 
     if( pressed_key.scancode() == Key::scan::del and pressed_key.alt() and pressed_key.ctrl()){
@@ -60,7 +60,7 @@ bool Keyboard::epilogue(){
             reboot();
     };
     if(pressed_key.valid()){
-        kout << "epilogue 2" << endl;
+        //kout << "epilogue 2" << endl;
         unsigned char character = pressed_key.ascii();
         if (character != 0){
 
@@ -71,7 +71,7 @@ bool Keyboard::epilogue(){
         }
         //pressed_key = Keyboard::key_hit();
     } 
-    Gate:queued(false);
+    //Gate:queued(false);
     return false;
 }
 
