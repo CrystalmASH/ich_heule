@@ -16,8 +16,6 @@
 
 #include "thread/dispatch.h"
 
-
-
 Dispatcher::Dispatcher(){
     life = nullptr;
 };
@@ -28,7 +26,8 @@ void Dispatcher::go (Coroutine& first){
 }
 
 void Dispatcher::dispatch (Coroutine& next){
-
+    life->resume(next);
+    life = &next;
 }
 
 Coroutine* Dispatcher::active(){
