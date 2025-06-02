@@ -17,11 +17,18 @@
 
 /* Add your code here */ 
 
+#include "thread/coroutine.h"
+
 class Dispatcher {
 public:
+	Coroutine* life;
+	Dispatcher();
 	Dispatcher(const Dispatcher &copy) = delete; // prevent copying
 	Dispatcher& operator=(const Dispatcher&) = delete; // prevent assignment
 /* Add your code here */ 
+	void go (Coroutine& first);
+	void dispatch (Coroutine& next);
+	Coroutine* active ();
 };
 
 #endif

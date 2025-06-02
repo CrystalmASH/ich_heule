@@ -13,3 +13,24 @@
 /*****************************************************************************/
 
 /* Add your code here */ 
+
+#include "thread/dispatch.h"
+
+
+
+Dispatcher::Dispatcher(){
+    life = nullptr;
+};
+
+void Dispatcher::go (Coroutine& first){
+    life = &first;
+    life->go();
+}
+
+void Dispatcher::dispatch (Coroutine& next){
+
+}
+
+Coroutine* Dispatcher::active(){
+    return life;
+}
