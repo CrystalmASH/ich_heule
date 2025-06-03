@@ -17,6 +17,7 @@
 #include "device/keyboard.h"
 #include "machine/plugbox.h"
 #include "machine/cpu.h"
+#include "thread/dispatch.h"
 /* Add your code here */ 
  
 /* GLOBAL VARIABLES */
@@ -59,7 +60,7 @@ void Application::action() {
     if (next) {
         kout << name << " switching to " << ((Application*)next)->name << "\n";
         //static_cast<Application*>(next)->caller = this;       // 👈 Wer ruft als nächstes?
-        resume(*next);
+        dispatcher.dispatch(*next);
     }
 
     kout << name << " finished\n";

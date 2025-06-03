@@ -12,7 +12,7 @@
 #include "thread/scheduler.h"
 
 
-void Scheduler::ready(Entrant& that)
+/*void Scheduler::ready(Entrant& that)
 {
 	readyList.enqueue(&that);
 	};
@@ -22,7 +22,7 @@ void Scheduler::schedule()
 	Entrant *process = static_cast<Entrant*>(readyList.dequeue());
 	if (process) {
 		current = process;
-		process->Entrant::go();
+		process->go();
 		}
 	else {
 		current = nullptr;

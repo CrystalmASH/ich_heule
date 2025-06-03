@@ -2,6 +2,7 @@
 
 #include "user/appl.h"
 #include "machine/cpu.h"
+#include "thread/dispatch.h"
 
 
 /*
@@ -21,6 +22,7 @@ int main()
 int main()
 
 {
+	
 	//Application appl;
 	//appl.action();
 
@@ -33,8 +35,8 @@ int main()
 	Application app1(stack1 + sizeof(stack1), "App1", &app2);
 
 	// Erste Coroutine starten (das ersetzt main-Schleife)
-	app1.go();
-
+	
+	dispatcher.go(app1);
 	
 	return 0;
 }

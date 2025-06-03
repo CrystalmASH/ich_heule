@@ -31,4 +31,6 @@ public:
 	Coroutine* active ();
 };
 
+extern Dispatcher dispatcher;
+
 #endif

@@ -21,7 +21,7 @@ class Entrant: public Chain, Coroutine
 public:
 	Entrant(const Entrant &copy) = delete; // prevent copying
 	Entrant& operator=(const Entrant&) = delete; // prevent assignment
-	Entrant(void* tos) {Coroutine(tos);};
+	//Entrant(void* tos) {Coroutine(tos);};
 
 /* Add your code here */ 
 };

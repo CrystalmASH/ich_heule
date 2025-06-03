@@ -33,3 +33,5 @@ void Dispatcher::dispatch (Coroutine& next){
 Coroutine* Dispatcher::active(){
     return life;
 }
+
+Dispatcher dispatcher;
