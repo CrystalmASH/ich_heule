@@ -21,5 +21,23 @@
 // extern "C", because they do not conform to C++ name mangling.
 extern "C" {
 /* Add your code here */ 
+    void toc_settle(struct toc* regs, void* tos,
+        void (*kickoff)(void*, void*, void*, void*, void*, void*, void*),
+        void* object);
+    
+    void toc_go(struct toc* regs);
+
+    void toc_switch(struct toc* regs_now, struct toc* regs_then);
 }
 /* Add your code here */ 
+Coroutine::Coroutine(void* tos){
+    toc_settle(&regs, tos, reinterpret_cast<void (*)(void*, void*, void*, void*, void*, void*, void*)>(kickoff), this);
+}
+
+void Coroutine::go(){
+    toc_go(&regs);
+}
+
+void Coroutine::resume(Coroutine& next){
+    toc_switch(&regs, &next.regs);
+}

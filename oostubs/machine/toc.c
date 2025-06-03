@@ -19,4 +19,20 @@ void toc_settle(struct toc *regs, void *tos,
 		void *object)
 {
 /* Add your code here */ 
+	void** stack = (void**) tos;
+	stack--;
+	*stack = object;
+	stack--;
+	*stack = 0;
+	stack--;
+	*stack = kickoff;
+	regs->rsp = stack;
+
+	
+	regs->rbx = 0;
+	regs->r12 = 0;
+	regs->r13 = 0;
+	regs->r14 = 0;
+	regs->r15 = 0;
+	regs->rbp = 0;
 }

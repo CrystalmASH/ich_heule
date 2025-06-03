@@ -24,6 +24,12 @@ public:
 	Coroutine(const Coroutine &copy) = delete; // prevent copying
 	Coroutine& operator=(const Coroutine&) = delete; // prevent assignment
 /* Add your code here */ 
+	Coroutine (void* tos);
+	void go();
+	void resume (Coroutine& next);
+	virtual void action () = 0;
+protected:
+	struct toc regs;
 };
 
 #endif
