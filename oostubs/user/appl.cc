@@ -24,7 +24,7 @@
 /* Add your code here */
 
 CPU cpu;
-
+/*
 Application::Application(){}
  
 void Application::action(){
@@ -48,4 +48,23 @@ void Application::action(){
  
 /* Add your code here */ 
 /* Add your code here */
+//}
+void Application::action() {
+    CGA_Stream kout;
+
+    for (int i = 0; i < 3; ++i) {
+        kout << name << " step " << i << "\n";
+    }
+
+    if (next) {
+        kout << name << " switching to " << ((Application*)next)->name << "\n";
+        //static_cast<Application*>(next)->caller = this;       // 👈 Wer ruft als nächstes?
+        resume(*next);
+    }
+
+    kout << name << " finished\n";
+
+    //if (caller) {
+        //resume(*caller);  // 👈 Zurück zum Aufrufer
+    //}
 }
