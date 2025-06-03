@@ -23,11 +23,9 @@ class Keyboard  : public Keyboard_Controller, public Gate
 public:
 	Keyboard(const Keyboard &copy) = delete; // prevent copying
 	Keyboard& operator=(const Keyboard&) = delete; // prevent assignment
-	PIC* pic;
-	Plugbox* plugbox;
 
 /* Add your code here */ 
-	Keyboard(PIC* pi, Plugbox* plug);
+	Keyboard();
 /* Add your code here */ 
  
 	// PLUGIN: "Plugs in" the keyboard (driver). From now on, keypresses are handled.
@@ -38,7 +36,7 @@ public:
 
 	bool prologue() override;
 
-	bool epilogue () override;
+	void epilogue () override;
 
 };
 

@@ -151,7 +151,7 @@ bool PIC::is_masked(int interrupt_device){
 	}
 }
 	
-	
+PIC pic;
 	
 	
 	

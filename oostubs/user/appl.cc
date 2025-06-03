@@ -30,13 +30,12 @@ Application::Application(){}
  
 void Application::action(){
     CGA_Stream kout;
-    PIC pic;
     cpu.enable_int();
 
     //Gate *gate = &plug.report(9);
 //gate->trigger();
 
-    Keyboard keybrd(&pic, &plug);
+    Keyboard keybrd();
     keybrd.plugin();
     cpu.idle();
 

@@ -11,9 +11,8 @@
 #include "device/cgastr.h"
 #include "machine/cpu.h"
 /* Add your code here */ 
-Keyboard::Keyboard(	PIC* pi, Plugbox* plug){
-    pic = pi;
-    plugbox = plug;
+Keyboard::Keyboard(){
+
 }
 /* Add your code here */ 
 void Keyboard::trigger(){
@@ -28,10 +27,10 @@ void Keyboard::trigger(){
             unsigned char character = pressed_key.ascii();
             if (character != 0){
 
-                pic->forbid(pic->keyboard);
+                pic.forbid(pic.keyboard);
                 kout.setpos(1,1);
                 kout << character;
-                pic->allow(pic->keyboard);
+                pic.allow(pic.keyboard);
             }
             //pressed_key = Keyboard::key_hit();
         } 
@@ -51,7 +50,7 @@ bool Keyboard::prologue(){
     }
 }
 
-bool Keyboard::epilogue(){
+void Keyboard::epilogue(){
     //kout << "epilogue" << endl;
     Key pressed_key = Keyboard_Controller::key_hit();
 
@@ -64,18 +63,18 @@ bool Keyboard::epilogue(){
         unsigned char character = pressed_key.ascii();
         if (character != 0){
 
-            pic->forbid(pic->keyboard);
+            pic.forbid(pic.keyboard);
             //kout.setpos(1,1);
             kout << character;
-            pic->allow(pic->keyboard);
+            pic.allow(pic.keyboard);
         }
         //pressed_key = Keyboard::key_hit();
     } 
     //Gate:queued(false);
-    return false;
+    return;
 }
 
 void Keyboard::plugin(){
-    plugbox->assign(plugbox->keyboard, *this);
-    pic->allow(pic->keyboard);
+    plug.assign(plug.keyboard, *this);
+    pic.allow(pic.keyboard);
 }

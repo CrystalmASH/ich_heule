@@ -31,4 +31,6 @@ public:
 	bool is_masked(int interrupt_device);
 };
 
+extern PIC pic;
+
 #endif
