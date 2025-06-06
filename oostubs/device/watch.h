@@ -30,10 +30,10 @@ public:
 	void windup();
 
 	// PROLOGUE: Contains the prologue of the interrupt handler.
-	bool prologue();
+	bool prologue() override;
 
 	// EPILOGUE: This method triggers the process switch.
-	void epilogue();
+	void epilogue() override;
 };
 
 #endif
