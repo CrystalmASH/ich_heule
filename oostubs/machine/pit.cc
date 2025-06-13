@@ -18,6 +18,7 @@ void PIT::interval(int us){
     int counter = (us - (us % 838)) / (838);
     int lower_byte = counter % (2^8);
     int higher_byte = counter >> 8;
+    higher_byte %= (2^8);
     outb(0x40, 0b00110100);
     //outb(0x40, 0b00101100);
     outb(0x40, lower_byte);
