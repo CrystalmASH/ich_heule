@@ -8,6 +8,7 @@
 /* Programmable Interval Timer.                                              */
 /*****************************************************************************/
 
+#include "machine/io_port.h"
 #ifndef __pit_include__
 #define __pit_include__
 
@@ -20,9 +21,7 @@ public:
 	PIT(int us) {
 		interval (us);
 	}
-	int interval() {
-/* Add your code here */ 
-	}
+	int interval();
 	void interval(int us);
 };
 
